@@ -1,17 +1,13 @@
-const supertest = require('supertest')
-const express = require('express')
-const router = require('../routes/hello')
+const testServer = require('express')()
+testServer.use('/', require('../routes/hello'))
 
-const testServer = express()
-testServer.use('/', router)
-const request = supertest(testServer)
+const request = require('supertest')(testServer)
 
-describe('`hello` router', () => {
+describe('hello router', () => {
 
-  it('should return `Hello World!`', async () => {
+  it('is responding with an OK status', async () => {
     const res = await request.get('/')
     expect(res.status).toEqual(200)
-    expect(res.text).toEqual('Hello World!')
   })
 
 })

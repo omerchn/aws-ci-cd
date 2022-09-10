@@ -27,6 +27,7 @@ jobs:
           npm run test:ci 
 
   deploy:
+    # needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -39,6 +40,7 @@ jobs:
       - name: Build App
         run: |
           cd client
+          npm ci
           npm run build
     
       - name: Configure AWS Credentials

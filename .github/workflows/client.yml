@@ -1,0 +1,24 @@
+name: Client CI
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ client/** ]
+  pull_request:
+    branches: [ main ]
+    paths: [ client/** ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+        working-directory: ./client
+        run: |
+          npm ci
+          npm test 

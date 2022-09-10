@@ -18,8 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-        working-directory: ./client
       - name: run tests
         run: |
+          cd client
           npm ci
           npm test 

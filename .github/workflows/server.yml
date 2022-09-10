@@ -14,12 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup node js
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run tests
+
+      - name: Run Tests
         run: |
           cd server
           npm ci
-          npm test 
+          npm run test:ci 

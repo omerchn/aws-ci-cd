@@ -16,7 +16,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <h2>Hello AWS :)</h2>
+      <h1>Hello AWS :)</h1>
       <div className="card">
         <CountBtn />
         <p>

@@ -47,7 +47,7 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: aws-demo-server
-          IMAGE_TAG: ${{ github.ref_name }}-${{ github.sha::6 }}
+          IMAGE_TAG: ${{ github.ref_name }}-${{ github.sha }}
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG ./server
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG

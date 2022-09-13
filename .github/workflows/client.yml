@@ -12,6 +12,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    enviroment: production
     steps:
       - uses: actions/checkout@v3
 
@@ -29,6 +30,7 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
+    enviroment: production
     steps:
       - uses: actions/checkout@v3
 
@@ -51,7 +53,7 @@ jobs:
           aws-region: eu-central-1
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./client/dist/ s3://aws-demo-client --delete
+        run: aws s3 sync ./client/dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
 
       - name: Invalidate Cloudfront distribution
-        run: aws cloudfront create-invalidation --distribution-id E35HFPZW96ZV05 --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
